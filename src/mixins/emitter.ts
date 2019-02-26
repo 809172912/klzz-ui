@@ -1,34 +1,42 @@
-function broadcast(componentName, eventName, params) {
-    this.$children.forEach(child => {
-        const name = child.$options.name;
-
-        if (name === componentName) {
-            child.$emit.apply(child, [eventName].concat(params));
-        } else {
-            // todo 如果 params 是空数组，接收到的会是 undefined
-            broadcast.apply(child, [componentName, eventName].concat([params]));
-        }
-    });
+import { Vue, Component } from 'vue-property-decorator'
+declare module 'vue/types/vue' {
+    interface Vue {
+        baseBroadcast (componentName: string, eventName: string, params: any): void
+        // 向上广播事件
+        dispatch (componentName: string, eventName: string, params: any): void
+        // 向下广播事件
+        broadcast (componentName: string, eventName: string, params: any): void
+    }
 }
-export default {
-    methods: {
-        dispatch(componentName, eventName, params) {
-            let parent = this.$parent || this.$root;
-            let name = parent.$options.name;
+@Component
+export default class Emitter extends Vue {
+    baseBroadcast(componentName: string, eventName: string, params: any): void {
+        this.$children.forEach(child => {
+            const name = child.$options.name;
 
-            while (parent && (!name || name !== componentName)) {
-                parent = parent.$parent;
-
-                if (parent) {
-                    name = parent.$options.name;
-                }
+            if (name === componentName) {
+                child.$emit.call(child, eventName, params);
+            } else {
+                this.baseBroadcast.call(child, componentName, eventName, params);
             }
+        });
+    }
+    dispatch(componentName: string, eventName: string, params: any): void {
+        let parent = this.$parent || this.$root;
+        let name = parent.$options.name;
+
+        while (parent && (!name || name !== componentName)) {
+            parent = parent.$parent;
+
             if (parent) {
-                parent.$emit.apply(parent, [eventName].concat(params));
+                name = parent.$options.name;
             }
-        },
-        broadcast(componentName, eventName, params) {
-            broadcast.call(this, componentName, eventName, params);
+        }
+        if (parent) {
+            parent.$emit.call(parent, eventName, params);
         }
     }
-};
+    broadcast(componentName: string, eventName: string, params: any): void {
+        this.baseBroadcast.call(this, componentName, eventName, params);
+    }
+}

@@ -9,9 +9,11 @@
 
 <script lang="ts">
     import {Component, Prop, Watch, Emit, Inject, Provide, Vue} from 'vue-property-decorator';
-    import './interface.ts';
-    import directives from '../../directive/index';
-    import filters from '../../filters/index';
+    import {User} from './interface';
+    import directives from '@/directive/index';
+    import filters from '@/filters/index';
+    import Emitter from '@/mixins/emitter';
+    import {USE_DISPATCH_DEMO} from '@/event/event';
 
     @Component({
         // 定义directives
@@ -26,6 +28,8 @@
         components: {
             // hello-world
         },
+        // 引用mixin
+        mixins: [Emitter]
     })
     export default class HelloWorld extends Vue {
         // 定义props
@@ -47,7 +51,7 @@
         public dataA: string = 'dataA';
         private dataB: User = {
             name: 'dataB',
-            age: 17,
+            age: 17
         };
         // 定义provide
         @Provide('biu')
@@ -68,6 +72,8 @@
             console.log(`该组件进入mounted`);
             console.log(`Inject进来的biu：${this.biu}`);
             this.methodsA(this.dataB);
+            // 向上传播事件（可越级，即可传播事件给根组件）
+            this.dispatch('Home', USE_DISPATCH_DEMO, JSON.parse(JSON.stringify(this.dataB)));
         }
         private beforeUpdate(): void {
             console.log(`该组件进入beforeUpdate`);

@@ -7,7 +7,9 @@
 
 <script lang="ts">
     import {Component, Provide, Vue} from 'vue-property-decorator';
-    import HelloWorld from '@/components/hello-world/index.vue'; // @ is an alias to /src
+    import HelloWorld from '@/components/hello-world/index.vue';
+    import {findComponentDownward} from '@/utils/findComponent';
+    import {USE_DISPATCH_DEMO} from '@/event/event';
 
     @Component({
         components: {
@@ -18,5 +20,15 @@
         public foo: number = 5;
         @Provide('biu')
         biu: number = this.foo;
+
+        mounted(): void {
+            let HelloWorldComponent = findComponentDownward(this, 'HelloWorld');
+            console.log('这是通过findComponent工具函数findComponentDownward找到的HelloWorldComponent组件：', HelloWorldComponent);
+        }
+        created(): void {
+            this.$on(USE_DISPATCH_DEMO, (params: string): void => {
+                console.log(`这是子组件HelloWorld通过mixin方法dispatch广播过来的事件，以及参数：`, params)
+            });
+        }
     }
 </script>

@@ -1,5 +1,5 @@
 // 定义类型
-interface User {
+export interface User {
     name: string;
     age: number;
 }

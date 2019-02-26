@@ -1,5 +1,5 @@
 // 由一个组件，向上找到最近的指定组件
-function findComponentUpward (context, componentName) {
+function findComponentUpward (context: any, componentName: string): object {
     let parent = context.$parent;
     let name = parent.$options.name;
 
@@ -11,7 +11,7 @@ function findComponentUpward (context, componentName) {
 }
 
 // 由一个组件，向上找到所有的指定组件
-function findComponentsUpward (context, componentName) {
+function findComponentsUpward (context: any, componentName: string): object {
     let parents = [];
     const parent = context.$parent;
 
@@ -24,7 +24,7 @@ function findComponentsUpward (context, componentName) {
 }
 
 // 由一个组件，向下找到最近的指定组件
-function findComponentDownward (context, componentName) {
+function findComponentDownward (context: any, componentName: string): object {
     const childrens = context.$children;
     let children = null;
 
@@ -45,8 +45,8 @@ function findComponentDownward (context, componentName) {
 }
 
 // 由一个组件，向下找到所有指定的组件
-function findComponentsDownward (context, componentName) {
-    return context.$children.reduce((components, child) => {
+function findComponentsDownward (context: any, componentName: string): object {
+    return context.$children.reduce((components: any, child: any) => {
         if (child.$options.name === componentName) components.push(child);
         const foundChilds = findComponentsDownward(child, componentName);
         return components.concat(foundChilds);
@@ -54,11 +54,11 @@ function findComponentsDownward (context, componentName) {
 }
 
 // 由一个组件，找到指定组件的兄弟组件
-function findBrothersComponents (context, componentName, exceptMe = true) {
-    let res = context.$parent.$children.filter(item => {
+function findBrothersComponents (context: any, componentName: string, exceptMe = true): object {
+    let res = context.$parent.$children.filter((item: any): boolean => {
         return item.$options.name === componentName;
     });
-    let index = res.findIndex(item => item._uid === context._uid);
+    let index = res.findIndex((item: any): boolean => item._uid === context._uid);
     if (exceptMe) res.splice(index, 1);
     return res;
 }
