@@ -132,6 +132,8 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+    // 具有独立作用域，其他组件不受影响
+    @import '~reset-css';
     // 变量
     $default-color: #333;
 </style>
