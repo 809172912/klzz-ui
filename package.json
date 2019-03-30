@@ -4,11 +4,14 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "dev": "npm run serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "markdown-it": "^8.4.2",
+    "markdown-it-container": "^2.0.0",
     "reset-css": "^4.0.1",
     "vue": "^2.6.6",
     "vue-class-component": "^6.0.0",
@@ -28,6 +31,7 @@
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
     "typescript": "^3.0.0",
-    "vue-template-compiler": "^2.5.21"
+    "vue-markdown-loader": "^2.4.1",
+    "vue-template-compiler": "^2.6.6"
   }
 }

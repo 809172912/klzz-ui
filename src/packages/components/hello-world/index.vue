@@ -10,10 +10,10 @@
 <script lang="ts">
     import {Component, Prop, Watch, Emit, Inject, Provide, Vue} from 'vue-property-decorator';
     import {User} from './interface';
-    import directives from '@/directive/index';
-    import filters from '@/filters/index';
-    import Emitter from '@/mixins/emitter';
-    import {USE_DISPATCH_DEMO} from '@/event/event';
+    import directives from '@/packages/directive/index';
+    import filters from '@/packages/filters/index';
+    import Emitter from '@/packages/mixins/emitter';
+    import {USE_DISPATCH_DEMO} from '@/packages/event/event';
 
     @Component({
         // 定义directives
@@ -133,7 +133,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
     // 具有独立作用域，其他组件不受影响
-    @import '~reset-css';
+    @import '../../../../node_modules/reset-css';
     // 变量
     $default-color: #333;
 </style>

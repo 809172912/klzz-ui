@@ -1,15 +1,15 @@
 <template>
     <div class="home">
-        <img alt="Vue logo" src="../assets/logo.png">
+        <img alt="Vue logo" src="../packages/assets/logo.png">
         <HelloWorld propA="aaabbb"/>
     </div>
 </template>
 
 <script lang="ts">
     import {Component, Provide, Vue} from 'vue-property-decorator';
-    import HelloWorld from '@/components/hello-world/index.vue';
-    import {findComponentDownward} from '@/utils/findComponent';
-    import {USE_DISPATCH_DEMO} from '@/event/event';
+    import HelloWorld from '@/packages/components/hello-world/index.vue';
+    import {findComponentDownward} from '@/packages/utils/findComponent';
+    import {USE_DISPATCH_DEMO} from '@/packages/event/event';
 
     @Component({
         components: {
