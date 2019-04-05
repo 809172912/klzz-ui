@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import App from './App.vue';
+import App from './examples/views/App.vue';
 import router from './examples/router';
 import store from './store';
 import demoBlock from './examples/components/demo-block.vue';
