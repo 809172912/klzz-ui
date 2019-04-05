@@ -1,9 +1,9 @@
 <template>
     <div id="app">
         <mainHeader></mainHeader>
-        <div class="container">
-            <sideNav class="nav"></sideNav>
-            <router-view class="view"></router-view>
+        <div class="app-container">
+            <sideNav class="app-nav"></sideNav>
+            <router-view class="app-view"></router-view>
         </div>
         <mainFooter></mainFooter>
     </div>
@@ -27,29 +27,23 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     @import '../assets/scss/index.scss';
 
-    .container {
+    .app-container {
         margin: 48px auto;
         width: 90%;
         background-color: #fff;
         box-shadow: 0 4px 30px 0 rgba(223, 225, 230, 0.5);
-        .nav {
-            float: left;
+        display: flex;
+        min-height: calc(100vh - 224px - 96px);
+        .app-nav {
             width: 210px;
         }
-        .view {
-            float: left;
+        .app-view {
             width: calc(100% - 215px);
             padding: 32px 48px 48px;
             box-sizing: border-box;
         }
-    }
-
-    .container:after {
-        content: "";
-        clear: both;
-        display: block;
     }
 </style>

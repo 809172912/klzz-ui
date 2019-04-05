@@ -19,16 +19,15 @@
             flex-direction: inherit;
             align-items: center;
             .logo {
-                margin-right: 50px;
+                margin-right: 40px;
                 img {
-                    margin-right: 10px;
-                    height: 52px;
+                    height: 30px;
                 }
             }
             .author-info {
-                text-align: left;
+                display: flex;
                 p {
-                    margin: 2px;
+                    margin-right: 40px;
                 }
                 a {
                     color: #6190E8;
