@@ -25,7 +25,7 @@
   <header class="page-header" :style="{'box-shadow': '0 10px 60px 0 rgba(29,29,31,0.07)'}">
     <div class="header-container">
       <img src="../assets/img/logo.png" width="100">
-      <router-link :to="{name: 'doc'}">组件</router-link>
+      <router-link :to="{path: '/'}">组件</router-link>
     </div>
   </header>
 </template>
