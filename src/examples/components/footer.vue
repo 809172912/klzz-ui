@@ -46,7 +46,7 @@
                     <img src="../assets/img/logo.png" alt="">
                 </div>
                 <div class="author-info">
-                    <p>author: 快乐种子应用前端组</p>
+                    <p>author: 打篮球好大汗</p>
                     <p>email: 809172912@qq.com </p>
                     <p>github: <a href="https://github.com/809172912">https://github.com/809172912</a></p>
                 </div>
